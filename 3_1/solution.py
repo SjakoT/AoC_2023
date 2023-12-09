@@ -2,7 +2,7 @@ inputFile = open('input.txt', 'r')
 lines = inputFile.readlines()
 
 def checkIfValid(line, start, end):
-    def symbolPresent(l, s, e):
+    def symbolPresent(l):
         line = lines[l]
         for char in line[max(start - 1, 0) : min(end + 1, len(line))]:
             if not char.isdigit() and char != '.' and char != '\n':
@@ -12,15 +12,15 @@ def checkIfValid(line, start, end):
 
     prevLine = line - 1
     if prevLine >= 0:
-        if symbolPresent(prevLine, start, end):
+        if symbolPresent(prevLine):
             return True
 
-    if symbolPresent(line, start, end):
+    if symbolPresent(line):
         return True
 
     nextLine = line + 1
     if nextLine <= len(lines) - 1:
-        if symbolPresent(nextLine, start, end):
+        if symbolPresent(nextLine):
             return True
 
     return False
